@@ -43,27 +43,28 @@ export default class NumericInput extends Component {
         const iconStyle = [style.icon, this.props.iconStyle]
         const totalWidth = this.props.totalWidth 
         const totalHeight = this.props.totalHeight ? this.props.totalHeight : (totalWidth * 0.4)
-        const paddingHorizontalTotal = (totalWidth * 0.045)
-        const inputWidth = this.props.type === 'up-down' ? (totalWidth * 0.54) : (totalWidth * 0.45)
+        const inputWidth = this.props.type === 'up-down' ? (totalWidth * 0.6) : (totalWidth * 0.45)
         const paddingRight = totalWidth * 0.18
         const borderRadiusTotal = totalHeight*0.18
         const fontSize = totalHeight*0.38
         const textColor = this.props.textColor 
         const inputContainerStyle = this.props.type === 'up-down' ?
-            [style.inputContainerUpDown,{width:totalWidth,height:totalHeight,paddingHorizontal: paddingHorizontalTotal, borderColor: borderColor } ,this.props.rounded ? { borderRadius: borderRadiusTotal } : {}, this.props.containerStyle] :
-            [style.inputContainerPlusMinus,{width:totalWidth,height:totalHeight,paddingHorizontal: paddingHorizontalTotal, borderColor: borderColor } ,this.props.rounded ? { borderRadius: borderRadiusTotal } : {}, this.props.containerStyle]
+            [style.inputContainerUpDown,{width:totalWidth,height:totalHeight, borderColor: borderColor } ,this.props.rounded ? { borderRadius: borderRadiusTotal } : {}, this.props.containerStyle] :
+            [style.inputContainerPlusMinus,{width:totalWidth,height:totalHeight,borderColor: borderColor } ,this.props.rounded ? { borderRadius: borderRadiusTotal } : {}, this.props.containerStyle]
         const inputStyle = this.props.type === 'up-down' ?
-            [style.inputUpDown,{width:inputWidth,fontSize:fontSize,color:textColor} ,this.props.inputStyle] :
+            [style.inputUpDown,{width:inputWidth,height:totalHeight,fontSize:fontSize,color:textColor,borderRightWidth:2,borderRightColor:borderColor} ,this.props.inputStyle] :
             [style.inputPlusMinus,{width:inputWidth,fontSize:fontSize,color:textColor} ,this.props.inputStyle]
         const sepratorStyle = [style.seprator, { backgroundColor: borderColor, width: sepratorWidth,height:totalHeight}]
-        const upDownStyle= { alignItems: 'center',width:totalWidth-inputWidth-sepratorWidth-paddingRight-paddingHorizontalTotal}
+        const upDownStyle= [{ alignItems: 'center',width:totalWidth-inputWidth,backgroundColor:this.props.upDownButtonsBackgroundColor,borderRightWidth:1,borderRightColor:borderColor},this.props.rounded ? {borderTopRightRadius:borderRadiusTotal,borderBottomRightRadius:borderRadiusTotal} : {}]
+        const rightButtonStyle = [{height:totalHeight-2,justifyContent:'center',alignItems:'center',borderLeftWidth:sepratorWidth,borderRightWidth:1,borderRightColor:borderColor,borderLeftColor:borderColor,backgroundColor:this.props.rightButtonBackgroundColor,width:(totalWidth-inputWidth)/2},this.props.rounded ? {borderTopRightRadius:borderRadiusTotal,borderBottomRightRadius:borderRadiusTotal} : {}]
+        const leftButtonStyle = [{height:totalHeight-2,justifyContent:'center',alignItems:'center',borderRightWidth:sepratorWidth,borderRightColor:borderColor,backgroundColor:this.props.leftButtonBackgroundColor,width:(totalWidth-inputWidth)/2},this.props.rounded ? {borderTopLeftRadius:borderRadiusTotal,borderBottomLeftRadius:borderRadiusTotal} : {}]        
         const value = typeof this.props.value === 'number' ? this.props.value : this.state.value
 
         if (this.props.type === 'up-down')
             return (
                 <View style={inputContainerStyle}>
                     <TextInput keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
-                    <View style={sepratorStyle} />
+                    {/* <View style={sepratorStyle} /> */}
                     <View style={upDownStyle}>
                         <Button onPress={this.inc} style={{flex:1,width:'100%',alignItems:'center'}}>
                             <Icon name='ios-arrow-up' size={fontSize} style={iconStyle} />
@@ -75,13 +76,13 @@ export default class NumericInput extends Component {
                 </View>)
         else return (
             <View style={inputContainerStyle}>
-                <Button onPress={this.dec} style={{height:totalHeight,justifyContent:'center'}}>
+                <Button onPress={this.dec} style={leftButtonStyle}>
                     <Icon name='md-remove' size={fontSize} style={iconStyle} />
                 </Button>
-                <View style={sepratorStyle} />
+                {/* <View style={sepratorStyle} /> */}
                 <TextInput keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
-                <View style={sepratorStyle} />
-                <Button onPress={this.inc} style={{height:totalHeight,justifyContent:'center'}}>
+                {/* <View style={sepratorStyle} /> */}
+                <Button onPress={this.inc} style={rightButtonStyle}>
                     <Icon name='md-add' size={fontSize} style={iconStyle} />
                 </Button>
             </View>)
@@ -143,6 +144,9 @@ NumericInput.propTypes = {
     minValue:PropTypes.number,
     maxValue:PropTypes.number,
     step:PropTypes.number,
+    upDownButtonsBackgroundColor:PropTypes.string,
+    rightButtonBackgroundColor:PropTypes.string,
+    leftButtonBackgroundColor:PropTypes.string,
 
 
 
@@ -164,6 +168,9 @@ NumericInput.defaultProps = {
     value:null,
     minValue:null,
     maxValue:null,
-    step:1
+    step:1,
+    upDownButtonsBackgroundColor:'white',
+    rightButtonBackgroundColor:'white',
+    leftButtonBackgroundColor:'white',
 
 }
