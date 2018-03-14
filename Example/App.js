@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-
+import NumericInput from 'react-native-numeric-input'
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -19,20 +19,34 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to React Native Numeric Input Example App!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit App.js
+          Basic Numeric Input
         </Text>
+        <NumericInput onChange={value=>console.log(value)}/>
         <Text style={styles.instructions}>
-          {instructions}
+          Rounded Numeric Input
         </Text>
+        <NumericInput onChange={value=>console.log(value)} rounded/>
+        <Text style={styles.instructions}>
+          Basic Numeric Input - up {'&'} down
+        </Text>
+        <NumericInput onChange={value=>console.log(value)} type='up-down'/>
+        <Text style={styles.instructions}>
+          Rounded Numeric Input - up {'&'} down
+        </Text>
+        <NumericInput onChange={value=>console.log(value)} rounded type='up-down'/>
+        <Text style={styles.instructions}>
+          Rounded Numeric Input - up {'&'} down with textColor:red iconColor:green
+        </Text>
+        <NumericInput onChange={value=>console.log(value)} rounded type='up-down' textColor='red' iconStyle={{color:'green'}} upDownButtonsBackgroundColor='red'/>
+
       </View>
     );
   }
@@ -41,7 +55,7 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
