@@ -1,0 +1,17 @@
+{
+  "name": "react-native-numeric-input",
+  "version": "0.4.1",
+  "description": "a stylish numeric input for react native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "omri himelbrand",
+  "license": "MIT",
+  "dependencies": {
+    "prop-types": "^15.6.1"
+  },
+  "peerDependencies":{
+    "react-native-vector-icons": "^4.*"
+  }
+}
