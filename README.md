@@ -2,9 +2,10 @@
 a cross platform stylish numeric input for react native
 
 ## Welcome
-<p align="center">
+
 <h3 align="center"><b>Visual Demo</b></h3>
-<img align="center" src="https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif"/>
+<p align="center">
+<img src="https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif"/>
 </p>
 
 ## Installation 
