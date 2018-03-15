@@ -1,9 +1,10 @@
 # react-native-numeric-input
-a stylish numeric input for react native
+a cross platform stylish numeric input for react native
 
 ## Welcome
-
+<p align="center">
 ![Demo GIF](https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif)
+</p>
 
 ## Installation 
 ### if you have react-native-vector-icons installed in your project
@@ -28,6 +29,8 @@ react-native link
 ```
 if you're experiencing issues with `react-native link` which is used to install react-native-vector-icons
 please refer to [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) to see manual installation steps
+
+[link to npm page](https://www.npmjs.com/package/react-native-numeric-input)
 
 ## Usage
 ### import Component
