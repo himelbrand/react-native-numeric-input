@@ -12,7 +12,7 @@ import {
   ScrollView,
   View
 } from 'react-native';
-import NumericInput from 'react-native-numeric-input'
+import NumericInput, {calcSize} from 'react-native-numeric-input'
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -66,14 +66,29 @@ export default class App extends Component {
         <Text style={styles.instructions}>
           Rounded Numeric Input with costum width
         </Text>
-        <NumericInput onChange={value => console.log(value)} totalWidth={200} rounded textColor='#103900' iconStyle={{ color: 'white' }} rightButtonBackgroundColor='#0FFF95' leftButtonBackgroundColor='#06BA63' />
+        <NumericInput 
+        onChange={value => console.log(value)} 
+        totalWidth={200} 
+        rounded 
+        textColor='#103900' 
+        iconStyle={{ color: 'white' }} 
+        rightButtonBackgroundColor='#0FFF95' 
+        leftButtonBackgroundColor='#06BA63' />
         <View style={styles.seprator}/>
 
 
         <Text style={styles.instructions}>
           Rounded Numeric Input with costum width and height
         </Text>
-        <NumericInput onChange={value => console.log(value)} totalWidth={240} totalHeight={50} rounded textColor='#B0228C' iconStyle={{ color: 'white' }} rightButtonBackgroundColor='#EA3788' leftButtonBackgroundColor='#E56B70' />
+        <NumericInput 
+        onChange={value => console.log(value)} 
+        totalWidth={calcSize(500)} 
+        totalHeight={calcSize(100)} 
+         
+        textColor='#B0228C' 
+        iconStyle={{ color: 'white' }} 
+        rightButtonBackgroundColor='#EA3788' 
+        leftButtonBackgroundColor='#E56B70' />
       </ScrollView>
     );
   }

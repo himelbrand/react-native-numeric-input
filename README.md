@@ -6,8 +6,13 @@ a cross platform stylish numeric input for react native
 <img src="https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif"/>
 </p>
 
+## Working example
+you can check out the very simple react native example app
+just click [here](https://github.com/himelbrand/react-native-numeric-input/tree/master/Example) and follow the instructions
+enjoy!
+
 ## Installation 
-### if you have react-native-vector-icons installed in your project
+#### if you have react-native-vector-icons installed in your project
 ```bash
 yarn add react-native-numeric-input
 ```
@@ -15,7 +20,7 @@ or with npm
 ```bash
 npm install react-native-numeric-input --save
 ```
-### if you don't have react-native-vector-icons installed in your project
+#### if you don't have react-native-vector-icons installed in your project
 ```bash
 yarn add react-native-numeric-input react-native-vector-icons
 react-native link
@@ -119,7 +124,11 @@ Name                                | Type                                | Defa
 * **totalWidth prop** - this prop is for the entire component width, and all other sizes are derived from it , unless given other size props
 * **initValue prop** - if using value prop, this is not needed and the initial value can be given by the value prop
 
-
+## calcSize function
+this is a function that receives a number and returns a number and it keeps a responsive size for all devices, based on the iphone 7 resolution
+```javascript
+calcSize(num)
+```
     
 ## Versioning
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
