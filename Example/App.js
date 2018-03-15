@@ -28,32 +28,32 @@ export default class App extends Component {
           Numeric Input Examples
         </Text>
         <Text style={styles.instructions}>
-          Basic Numeric Input
+          Basic Numeric Input - no limits
         </Text>
         <NumericInput onChange={value => console.log(value)} />
         <View style={styles.seprator}/>
         <Text style={styles.instructions}>
-          Rounded Numeric Input
+          Rounded Numeric Input - with minValue of 0
         </Text>
-        <NumericInput onChange={value => console.log(value)} rounded />
+        <NumericInput onChange={value => console.log(value)} rounded minValue={0}/>
         <View style={styles.seprator}/>
 
         <Text style={styles.instructions}>
-          Basic Numeric Input - up {'&'} down
+          Basic Numeric Input - with step of 0.5 and valueType real
         </Text>
-        <NumericInput onChange={value => console.log(value)} type='up-down' />
+        <NumericInput onChange={value => console.log(value)} type='up-down' valueType='real' step={0.5}/>
         <View style={styles.seprator}/>
 
         <Text style={styles.instructions}>
-          Rounded Numeric Input - up {'&'} down
+          Rounded Numeric Input - with minValue of 0 and maxValue of 5
         </Text>
-        <NumericInput onChange={value => console.log(value)} rounded type='up-down' />
+        <NumericInput onChange={value => console.log(value)} rounded type='up-down' minValue={0} maxValue={5}/>
         <View style={styles.seprator}/>
 
         <Text style={styles.instructions}>
-          Rounded Numeric Input - up {'&'} down with styling
+          Rounded Numeric Input - with styling and initial value of 6
         </Text>
-        <NumericInput onChange={value => console.log(value)} rounded type='up-down' textColor='#26547C' iconStyle={{ color: 'green' }} upDownButtonsBackgroundColor='#06D6A0' />
+        <NumericInput onChange={value => console.log(value)} rounded type='up-down' initValue={6} textColor='#26547C' iconStyle={{ color: 'green' }} upDownButtonsBackgroundColor='#06D6A0' />
         <View style={styles.seprator}/>
 
         <Text style={styles.instructions}>
