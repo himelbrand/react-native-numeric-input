@@ -3,7 +3,7 @@ a stylish numeric input for react native
 
 ## Welcome
 
-[Demo GIF](https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif)
+![Demo GIF](https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif)
 
 ## Installation 
 ### if you have react-native-vector-icons installed in your project
