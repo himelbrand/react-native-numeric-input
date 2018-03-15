@@ -100,21 +100,21 @@ Name                                | Type                                | Defa
 **minValue**                        |`number`                             | none
 **maxValue**                        |`number`                             | none
 **step**                            |`number`                             | 1
-**valueType**                       |`integer` or `real`                  | `integer`
+**valueType**                       |`'integer'` or `'real'`                  | `'integer'`
 **initValue**                       |`number`                             | 0
 **iconSize**                        |`number`                             | calcSize(30)
-**borderColor**                     |`string`                             | `#d4d4d4`
+**borderColor**                     |`string`                             | `'#d4d4d4'`
 **iconStyle**                       |`object`                             | none
 **totalWidth**                      |`number`                             | calcSize(220)
 **sepratorWidth**                   |`number`                             | 1
-**type**                            |`plus-minus` or `up-down`            | `plus-minus`
+**type**                            |`'plus-minus'` or `'up-down'`        | `'plus-minus'`
 **rounded**                         |`boolean`                            | false
-**textColor**                       |`string`                             | `black`
+**textColor**                       |`string`                             | `'black'`
 **containerStyle**                  |`object`                             | none
 **inputStyle**                      |`object`                             | none
-**upDownButtonsBackgroundColor**    |`string`                             | `white`
-**rightButtonBackgroundColor**      |`string`                             | `white`
-**leftButtonBackgroundColor**       |`string`                             | `white`
+**upDownButtonsBackgroundColor**    |`string`                             | `'white'`
+**rightButtonBackgroundColor**      |`string`                             | `'white'`
+**leftButtonBackgroundColor**       |`string`                             | `'white'`
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
 
