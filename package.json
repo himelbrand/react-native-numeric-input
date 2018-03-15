@@ -1,6 +1,6 @@
 {
   "name": "react-native-numeric-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a stylish numeric input for react native",
   "main": "index.js",
   "scripts": {
@@ -21,8 +21,8 @@
     "numeric"
   ],
   "author": {
-    "name":"omri himelbrand",
-    "email":"himelbrand@gmail.com"
+    "name": "omri himelbrand",
+    "email": "himelbrand@gmail.com"
   },
   "homepage": "https://github.com/himelbrand/react-native-numeric-input",
   "bugs": {
@@ -36,7 +36,7 @@
   "dependencies": {
     "prop-types": "^15.6.1"
   },
-  "peerDependencies":{
+  "peerDependencies": {
     "react-native-vector-icons": "^4.*"
   }
 }
