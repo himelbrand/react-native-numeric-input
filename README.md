@@ -3,7 +3,7 @@ a cross platform stylish numeric input for react native
 
 ## Welcome
 <p align="center">
-![Demo GIF](https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif)
+<img src="https://media.giphy.com/media/4To90hOE71mUTgdBVZ/giphy.gif"/>
 </p>
 
 ## Installation 
