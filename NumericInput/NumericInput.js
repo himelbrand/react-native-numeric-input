@@ -38,6 +38,7 @@ export default class NumericInput extends Component {
         this.props.onChange && this.props.onChange(parsedValue)
     }
     render() {
+        const editable = this.props.editable 
         const sepratorWidth = this.props.sepratorWidth
         const iconSize = this.props.iconSize
         const borderColor = this.props.borderColor
@@ -100,7 +101,7 @@ export default class NumericInput extends Component {
         if (this.props.type === 'up-down')
             return (
                 <View style={inputContainerStyle}>
-                    <TextInput returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
+                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
                     <View style={upDownStyle}>
                         <Button onPress={this.inc} style={{ flex: 1, width: '100%', alignItems: 'center' }}>
                             <Icon name='ios-arrow-up' size={fontSize} style={iconStyle} />
@@ -116,7 +117,7 @@ export default class NumericInput extends Component {
                     <Icon name='md-remove' size={fontSize} style={iconStyle} />
                 </Button>
                 <View style={[inputWraperStyle]}>
-                    <TextInput returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
+                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
                 </View>
                 <Button onPress={this.inc} style={rightButtonStyle}>
                     <Icon name='md-add' size={fontSize} style={iconStyle} />
@@ -186,6 +187,7 @@ NumericInput.propTypes = {
     upDownButtonsBackgroundColor: PropTypes.string,
     rightButtonBackgroundColor: PropTypes.string,
     leftButtonBackgroundColor: PropTypes.string,
+    editable: PropTypes.bool,
 }
 NumericInput.defaultProps = {
     iconSize: calcSize(30),
@@ -207,5 +209,6 @@ NumericInput.defaultProps = {
     upDownButtonsBackgroundColor: 'white',
     rightButtonBackgroundColor: 'white',
     leftButtonBackgroundColor: 'white',
+    editable: true,
 
 }
