@@ -117,6 +117,7 @@ Name                                | Type                                | Defa
 **leftButtonBackgroundColor**       |`string`                             | `'white'`
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
+**editable**                        |`boolean`                            | true
 
 ### notes about props
 * **value prop** - this component uses it's own state to hold value if value is not given as a prop
