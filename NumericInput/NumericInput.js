@@ -9,11 +9,13 @@ export default class NumericInput extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: props.initValue
+            value: props.initValue,
+            stringValue: props.initValue.toString(),
         }
+        this.ref = null
     }
     inc = () => {
-        let value = this.props.value ? this.props.value : this.state.value
+        let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.maxValue === null || (value < this.props.maxValue)) {
             value += this.props.step
             this.setState({ value })
@@ -23,7 +25,7 @@ export default class NumericInput extends Component {
 
     }
     dec = () => {
-        let value = this.props.value ? this.props.value : this.state.value
+        let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.minValue === null || (value > this.props.minValue)) {
             value -= this.props.step
             this.setState({ value })
@@ -32,13 +34,60 @@ export default class NumericInput extends Component {
             this.props.onChange && this.props.onChange(value)
     }
     onChange = (value) => {
-        let parsedValue = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
-        parsedValue = isNaN(parsedValue) ? 0 : parsedValue
-        this.setState({ value: parsedValue })
-        this.props.onChange && this.props.onChange(parsedValue)
+        let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
+        let realMatch = value && value.match(/\d+(\.(\d+)?)?/) && value.match(/\d+(\.(\d+)?)?/)[0] === value.match(/\d+(\.(\d+)?)?/).input,
+            intMatch = value && value.match(/\d+/) && value.match(/\d+/)[0] === value.match(/\d+/).input,
+            legal = value === '' || (((this.props.valueType === 'real' && realMatch) || (this.props.valueType !== 'real' && intMatch)) && (this.props.maxValue === null || (parseFloat(value) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(value) >= this.props.minValue)))
+        if (!legal) {
+            if (this.ref) {
+                this.ref.blur()
+                setTimeout(() => {
+                    this.ref.clear()
+                    setTimeout(() => {
+                        this.props.onChange && this.props.onChange(currValue - 1)
+                    this.setState({ value: currValue - 1 }, () => {
+                        this.setState({ value: currValue })
+                        this.props.onChange && this.props.onChange(currValue)
+                    })},10)
+                }, 15)
+                setTimeout(() => this.ref.focus(), 20)
+
+            }
+        } else {
+            this.setState({stringValue:value})
+            let parsedValue = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
+            parsedValue = isNaN(parsedValue) ? 0 : parsedValue
+                if (parsedValue !== this.props.value)
+                    this.props.onChange && this.props.onChange(parsedValue)
+                this.setState({ value: parsedValue })
+         
+        }
     }
+    onBlur = () => {
+        let match = this.state.stringValue.match(/\d+(\.\d+)?/)
+        let legal = match && match[0] === match.input
+        let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
+        if(!legal){
+            if (this.ref) {
+                this.ref.blur()
+                setTimeout(() => {
+                    this.ref.clear()
+                    setTimeout(() => {
+                        this.props.onChange && this.props.onChange(currValue - 1)
+                    this.setState({ value: currValue - 1 }, () => {
+                        this.setState({ value: currValue,stringValue:currValue.toString() })
+                        this.props.onChange && this.props.onChange(currValue)
+                    })},10)
+                }, 15)
+                setTimeout(() => this.ref.focus(), 20)
+
+            }
+        }
+        this.props.onBlur && this.props.onBlur()
+    }
+
     render() {
-        const editable = this.props.editable 
+        const editable = this.props.editable
         const sepratorWidth = this.props.sepratorWidth
         const iconSize = this.props.iconSize
         const borderColor = this.props.borderColor
@@ -101,7 +150,7 @@ export default class NumericInput extends Component {
         if (this.props.type === 'up-down')
             return (
                 <View style={inputContainerStyle}>
-                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
+                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur}/>
                     <View style={upDownStyle}>
                         <Button onPress={this.inc} style={{ flex: 1, width: '100%', alignItems: 'center' }}>
                             <Icon name='ios-arrow-up' size={fontSize} style={iconStyle} />
@@ -117,7 +166,7 @@ export default class NumericInput extends Component {
                     <Icon name='md-remove' size={fontSize} style={iconStyle} />
                 </Button>
                 <View style={[inputWraperStyle]}>
-                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} />
+                    <TextInput editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={value.toString()} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} />
                 </View>
                 <Button onPress={this.inc} style={rightButtonStyle}>
                     <Icon name='md-add' size={fontSize} style={iconStyle} />

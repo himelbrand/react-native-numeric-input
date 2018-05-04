@@ -21,6 +21,12 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      value: 0
+    }
+  }
   render() {
     return (
       <ScrollView style={{paddingBottom:200}} contentContainerStyle={styles.container}>
@@ -47,7 +53,7 @@ export default class App extends Component {
         <Text style={styles.instructions}>
           Rounded Numeric Input - with minValue of 0 and maxValue of 5
         </Text>
-        <NumericInput onChange={value => console.log(value)} rounded type='up-down' minValue={0} maxValue={5}/>
+        <NumericInput value={this.state.value} onChange={value => this.setState({value})} rounded type='up-down' minValue={0} maxValue={5}/>
         <View style={styles.seprator}/>
 
         <Text style={styles.instructions}>
