@@ -24,9 +24,12 @@ export default class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      value: 0
+      value: 0,
+      amount:0
     }
+
   }
+  
   render() {
     return (
       <ScrollView style={{paddingBottom:200}} contentContainerStyle={styles.container}>
