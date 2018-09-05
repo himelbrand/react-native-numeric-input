@@ -118,12 +118,14 @@ Name                                | Type                                | Defa
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
 **editable**                        |`boolean`                            | true
+**validateOnBlur**                  |`boolean`                            | true
 
 ### notes about props
 * **value prop** - this component uses it's own state to hold value if value is not given as a prop
 * **style props** - this component has a default style and the styles props are to override the default style or add more fields
 * **totalWidth prop** - this prop is for the entire component width, and all other sizes are derived from it , unless given other size props
 * **initValue prop** - if using value prop, this is not needed and the initial value can be given by the value prop
+* **validateOnBlur** - added on version 1.3.2, if set to false the text input will validate while typing, not recommended, so just keep it true unless there is a good reason not to use the default functionallity 
 
 ## calcSize function
 this is a function that receives a number and returns a number and it keeps a responsive size for all devices, based on the iphone 7 resolution

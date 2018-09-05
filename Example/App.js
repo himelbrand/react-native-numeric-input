@@ -27,15 +27,32 @@ export default class App extends Component {
       value: 0,
       amount:0
     }
-
+this.amount = 0
   }
-  
+  changeAmount(text){
+    this.amount = text
+  }
   render() {
     return (
       <ScrollView style={{paddingBottom:200}} contentContainerStyle={styles.container}>
         <Text style={styles.welcome}>
           Numeric Input Examples
         </Text>
+        <NumericInput
+                    value={this.amount}
+                    onChange={(text) => { this.changeAmount(text) }}
+                    totalWidth={150}
+                    totalHeight={35}
+                    minValue={0}
+                    maxValue={9999}
+                    step={1}
+                    iconStyle={{ fontSize: 15, color: '#434A5E' }}
+                    inputStyle={{ fontSize: 18, color: '#434A5E' }}
+                    valueType='real'
+                    borderColor='#C7CBD6'
+                    rightButtonBackgroundColor='#C7CBD6'
+                    leftButtonBackgroundColor='#C7CBD6'
+                  />
         <Text style={styles.instructions}>
           Basic Numeric Input - no limits
         </Text>
