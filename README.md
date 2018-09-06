@@ -119,6 +119,10 @@ Name                                | Type                                | Defa
 **onChange**                        |`function`                           | none - required prop
 **editable**                        |`boolean`                            | true
 **validateOnBlur**                  |`boolean`                            | true
+**reachMaxIncIconStyle**            |`object`                             | none
+**reachMaxDecIconStyle**            |`object`                             | none
+**reachMinIncIconStyle**            |`object`                             | none
+**reachMinDecIconStyle**            |`object`                             | none
 
 ### notes about props
 * **value prop** - this component uses it's own state to hold value if value is not given as a prop
@@ -126,6 +130,11 @@ Name                                | Type                                | Defa
 * **totalWidth prop** - this prop is for the entire component width, and all other sizes are derived from it , unless given other size props
 * **initValue prop** - if using value prop, this is not needed and the initial value can be given by the value prop
 * **validateOnBlur** - added on version 1.3.2, if set to false the text input will validate while typing, not recommended, so just keep it true unless there is a good reason not to use the default functionallity 
+* **reachMaxIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case maxValue is reached - **optional**
+* **reachMaxDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case maxValue is reached - **optional**
+* **reachMinIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case minValue is reached - **optional**
+* **reachMinDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case minValue is reached - **optional**
+
 
 ## calcSize function
 this is a function that receives a number and returns a number and it keeps a responsive size for all devices, based on the iphone 7 resolution
