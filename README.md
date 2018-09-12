@@ -101,7 +101,7 @@ Name                                | Type                                | Defa
 **maxValue**                        |`number`                             | none
 **step**                            |`number`                             | 1
 **valueType**                       |`'integer'` or `'real'`                  | `'integer'`
-**initValue**                       |`number`                             | 0
+**initValue**                       |`number`                             | 0 - required , if not used will start at 0
 **iconSize**                        |`number`                             | calcSize(30)
 **borderColor**                     |`string`                             | `'#d4d4d4'`
 **iconStyle**                       |`object`                             | none
