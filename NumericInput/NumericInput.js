@@ -17,10 +17,10 @@ export default class NumericInput extends Component {
     }
 	
 	componentDidUpdate() {
-		if (this.props.initValue !== this.state.value) {
-			this.setState({value: this.props.initValue, lastValid: this.props.initValue, stringValue: this.props.initValue.toString()});
-		}
-	}
+    if (this.props.initValue !== this.state.value) {
+      this.setState({value: this.props.initValue, lastValid: this.props.initValue, stringValue: this.props.initValue.toString()});
+    }
+  }
 	
     inc = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
