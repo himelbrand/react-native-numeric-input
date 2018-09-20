@@ -15,6 +15,13 @@ export default class NumericInput extends Component {
         }
         this.ref = null
     }
+	
+	componentDidUpdate() {
+    if (this.props.initValue !== this.state.value) {
+      this.setState({value: this.props.initValue, lastValid: this.props.initValue, stringValue: this.props.initValue.toString()});
+    }
+  }
+	
     inc = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.maxValue === null || (value < this.props.maxValue)) {
