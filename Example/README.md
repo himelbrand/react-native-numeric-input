@@ -11,3 +11,9 @@ react-native run-ios
 #or with android
 #react-native run-android
 ```
+
+if ios build fails, run the following and try again
+
+```bash
+react-native fix-code
+```
