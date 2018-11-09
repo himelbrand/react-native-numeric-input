@@ -37,14 +37,21 @@ please refer to [react-native-vector-icons](https://github.com/oblador/react-nat
 
 [link to npm page](https://www.npmjs.com/package/react-native-numeric-input)
 
+## Responsive default size
+
+this component uses the [react-native-pixel-perfect](https://www.npmjs.com/package/react-native-pixel-perfect)
+
+and the defualt style is using base resolution for iphone7, in case you want to use the default design but, using a different base resolution, I added a function called updateBaseResolution(width,height) to use it you need to access it via a ref to the component.
+
+since the component is dependant on react-native-pixel-perfect, when installing this package you install also react-native-pixel-perfect if it's not already installed.
+
+so you can create your own responsive size function and use it to set your custom style.
+
 ## Usage
+
 ### import Component
 ```javascript
 import NumericInput from 'react-native-numeric-input'
-```
-### import Component and responsive size function
-```javascript
-import NumericInput,{ calcSize } from 'react-native-numeric-input'
 ```
 ### Basic Usage
 ```javascript
@@ -76,22 +83,7 @@ import NumericInput,{ calcSize } from 'react-native-numeric-input'
             rightButtonBackgroundColor='#EA3788' 
             leftButtonBackgroundColor='#E56B70'/>
 ```
-**or using calcSize function for responsive sizes**
-```javascript
-        <NumericInput 
-            value={this.state.value} 
-            onChange={value => this.setState({value})} 
-            totalWidth={calcSize(240)} 
-            totalHeight={calcSize(50)} 
-            iconSize={calcSize(25)}
-            step={1.5}
-            valueType='real'
-            rounded 
-            textColor='#B0228C' 
-            iconStyle={{ color: 'white' }} 
-            rightButtonBackgroundColor='#EA3788' 
-            leftButtonBackgroundColor='#E56B70'/>
-```
+
 
 ## Props
 Name                                | Type                                | Default
@@ -125,6 +117,7 @@ Name                                | Type                                | Defa
 **reachMinDecIconStyle**            |`object`                             | none
 
 ### notes about props
+
 * **value prop** - this component uses it's own state to hold value if value is not given as a prop
 * **style props** - this component has a default style and the styles props are to override the default style or add more fields
 * **totalWidth prop** - this prop is for the entire component width, and all other sizes are derived from it , unless given other size props
@@ -135,17 +128,8 @@ Name                                | Type                                | Defa
 * **reachMinIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case minValue is reached - **optional**
 * **reachMinDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case minValue is reached - **optional**
 
-
-## calcSize function
-this is a function that receives a number and returns a number and it keeps a responsive size for all devices, based on the iphone 7 resolution
-```javascript
-calcSize(num)
-```
-    
 ## Versioning
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## License
-This project is licensed under the MIT License   
-    
-    
+This project is licensed under the MIT License

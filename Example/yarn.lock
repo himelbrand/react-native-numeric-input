@@ -4131,11 +4131,16 @@ react-native-fix-xcode-10@rhdeck/react-native-fix-xcode-10:
   dependencies:
     glob "^7.1.2"
 
-react-native-numeric-input@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-numeric-input/-/react-native-numeric-input-1.5.1.tgz#b64992c9c61174f2a8252d1a69bc474699485db0"
+react-native-numeric-input@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-numeric-input/-/react-native-numeric-input-1.6.0.tgz#6ead8fc449eb7e7c269770efbe48b681f88a0e04"
   dependencies:
     prop-types "^15.6.1"
+    react-native-pixel-perfect "^1.0.1"
+
+react-native-pixel-perfect@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-pixel-perfect/-/react-native-pixel-perfect-1.0.1.tgz#a316bea9b486a13ba6ced7849a4aa878fd37c875"
 
 react-native-vector-icons@^4.5.0:
   version "4.5.0"

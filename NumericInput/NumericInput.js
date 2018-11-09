@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View, TextInput, StyleSheet, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Button from '../Button'
-import { calcSize } from '../utils'
 import PropTypes from 'prop-types'
+import {create,PREDEF_RES} from 'react-native-pixel-perfect'
 
 export default class NumericInput extends Component {
     constructor(props) {
@@ -14,6 +14,8 @@ export default class NumericInput extends Component {
             stringValue: props.initValue.toString(),
         }
         this.ref = null
+        this.calcSize = create(PREDEF_RES.iphone7.px)
+
     }
 	
 	componentWillReceiveProps(props) {
@@ -25,7 +27,9 @@ export default class NumericInput extends Component {
       });
     }
   }
-	
+    updateBaseResolution = (width,height) => {
+        this.calcSize = create({width,height})
+    }
     inc = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.maxValue === null || (value < this.props.maxValue)) {
@@ -47,10 +51,8 @@ export default class NumericInput extends Component {
     }
     onChange = (value) => {
         let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
-        console.log(value)
         if((value.length === 1 && value==='-') || (value.length === 2 && value==='0-')){
             this.setState({stringValue:'-'})
-            console.log(value,'GFDGFGFD')
             return
         }
         let realMatch = value && value.match(/-?\d+(\.(\d+)?)?/) && value.match(/-?\d+(\.(\d+)?)?/)[0] === value.match(/-?\d+(\.(\d+)?)?/).input,
@@ -93,7 +95,6 @@ export default class NumericInput extends Component {
         let match = this.state.stringValue.match(/-?[0-9]\d*(\.\d+)?/)
         let legal = match && match[0] === match.input && ((this.props.maxValue === null || (parseFloat(this.state.stringValue) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(this.state.stringValue) >= this.props.minValue)))
         let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
-        console.log(this.state.value , this.state.lastValid,((this.props.maxValue === null || (parseFloat(this.state.stringValue) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(this.state.stringValue) >= this.props.minValue))) )
         if(!legal){
             if (this.ref) {
                 this.ref.blur()
@@ -214,7 +215,7 @@ export default class NumericInput extends Component {
 const style = StyleSheet.create({
     seprator: {
         backgroundColor: 'grey',
-        height: calcSize(80),
+        height: this.calcSize(80),
     },
     inputContainerUpDown: {
         flexDirection: 'row',
@@ -245,7 +246,7 @@ const style = StyleSheet.create({
     },
     upDown: {
         alignItems: 'center',
-        paddingRight: calcSize(15)
+        paddingRight: this.calcSize(15)
     }
 })
 NumericInput.propTypes = {
@@ -277,10 +278,10 @@ NumericInput.propTypes = {
     reachMinDecIconStyle:PropTypes.any,
 }
 NumericInput.defaultProps = {
-    iconSize: calcSize(30),
+    iconSize: this.calcSize(30),
     borderColor: '#d4d4d4',
     iconStyle: {},
-    totalWidth: calcSize(220),
+    totalWidth: this.calcSize(220),
     sepratorWidth: 1,
     type: 'plus-minus',
     rounded: false,
