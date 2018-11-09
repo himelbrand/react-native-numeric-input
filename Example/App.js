@@ -106,7 +106,7 @@ export default class App extends Component {
 
 
         <Text style={styles.instructions}>
-          Rounded Numeric Input with costum width
+          Rounded Numeric Input with custom width
         </Text>
         <NumericInput
           initValue={this.state.v7}
@@ -122,7 +122,7 @@ export default class App extends Component {
 
 
         <Text style={styles.instructions}>
-          Rounded Numeric Input with costum width and height
+          Rounded Numeric Input with custom width and height
         </Text>
         <NumericInput
           initValue={this.state.v8}
