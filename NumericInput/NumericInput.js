@@ -33,21 +33,20 @@ export default class NumericInput extends Component {
     inc = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.maxValue === null || (value < this.props.maxValue)) {
-            value += this.props.step
+            value = (value + this.props.step).toFixed(12)
             this.setState({ value,stringValue:value.toString() })
         }
         if (value !== this.props.value)
-            this.props.onChange && this.props.onChange(value)
-
+            this.props.onChange && this.props.onChange(Number(value))
     }
     dec = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.minValue === null || (value > this.props.minValue)) {
-            value -= this.props.step
+            value = (value - this.props.step).toFixed(12)
             this.setState({ value,stringValue:value.toString() })
         }
         if (value !== this.props.value)
-            this.props.onChange && this.props.onChange(value)
+            this.props.onChange && this.props.onChange(Number(value))
     }
     onChange = (value) => {
         let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
