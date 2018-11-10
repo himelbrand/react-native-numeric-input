@@ -5,7 +5,7 @@ import Button from '../Button'
 import PropTypes from 'prop-types'
 import {create,PREDEF_RES} from 'react-native-pixel-perfect'
 
-const calcSize = create(PREDEF_RES.iphone7.px)
+let calcSize = create(PREDEF_RES.iphone7.px)
 
 export default class NumericInput extends Component {
     constructor(props) {
