@@ -5,6 +5,8 @@ import Button from '../Button'
 import PropTypes from 'prop-types'
 import {create,PREDEF_RES} from 'react-native-pixel-perfect'
 
+let calcSize = create(PREDEF_RES.iphone7.px)
+
 export default class NumericInput extends Component {
     constructor(props) {
         super(props)
@@ -14,8 +16,6 @@ export default class NumericInput extends Component {
             stringValue: props.initValue.toString(),
         }
         this.ref = null
-        this.calcSize = create(PREDEF_RES.iphone7.px)
-
     }
 	
 	componentWillReceiveProps(props) {
@@ -28,26 +28,25 @@ export default class NumericInput extends Component {
     }
   }
     updateBaseResolution = (width,height) => {
-        this.calcSize = create({width,height})
+        calcSize = create({width,height})
     }
     inc = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.maxValue === null || (value < this.props.maxValue)) {
-            value += this.props.step
+            value = (value + this.props.step).toFixed(12)
             this.setState({ value,stringValue:value.toString() })
         }
         if (value !== this.props.value)
-            this.props.onChange && this.props.onChange(value)
-
+            this.props.onChange && this.props.onChange(Number(value))
     }
     dec = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.minValue === null || (value > this.props.minValue)) {
-            value -= this.props.step
+            value = (value - this.props.step).toFixed(12)
             this.setState({ value,stringValue:value.toString() })
         }
         if (value !== this.props.value)
-            this.props.onChange && this.props.onChange(value)
+            this.props.onChange && this.props.onChange(Number(value))
     }
     onChange = (value) => {
         let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
@@ -215,7 +214,7 @@ export default class NumericInput extends Component {
 const style = StyleSheet.create({
     seprator: {
         backgroundColor: 'grey',
-        height: this.calcSize(80),
+        height: calcSize(80),
     },
     inputContainerUpDown: {
         flexDirection: 'row',
@@ -246,7 +245,7 @@ const style = StyleSheet.create({
     },
     upDown: {
         alignItems: 'center',
-        paddingRight: this.calcSize(15)
+        paddingRight: calcSize(15)
     }
 })
 NumericInput.propTypes = {
@@ -278,10 +277,10 @@ NumericInput.propTypes = {
     reachMinDecIconStyle:PropTypes.any,
 }
 NumericInput.defaultProps = {
-    iconSize: this.calcSize(30),
+    iconSize: calcSize(30),
     borderColor: '#d4d4d4',
     iconStyle: {},
-    totalWidth: this.calcSize(220),
+    totalWidth: calcSize(220),
     sepratorWidth: 1,
     type: 'plus-minus',
     rounded: false,
