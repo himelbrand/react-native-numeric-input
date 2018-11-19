@@ -34,6 +34,7 @@ export default class NumericInput extends Component {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.maxValue === null || (value < this.props.maxValue)) {
             value = (value + this.props.step).toFixed(12)
+            value = this.props.valueType === 'real ? parseFloat(value) : parseInt(value)
             this.setState({ value,stringValue:value.toString() })
         }
         if (value !== this.props.value)
@@ -43,6 +44,7 @@ export default class NumericInput extends Component {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
         if (this.props.minValue === null || (value > this.props.minValue)) {
             value = (value - this.props.step).toFixed(12)
+            value = this.props.valueType === 'real ? parseFloat(value) : parseInt(value)
             this.setState({ value,stringValue:value.toString() })
         }
         if (value !== this.props.value)
