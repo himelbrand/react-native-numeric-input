@@ -50,15 +50,19 @@ export default class NumericInput extends Component {
         if (value !== this.props.value)
             this.props.onChange && this.props.onChange(Number(value))
     }
+    isLegalValue = (value,mReal,mInt) => value === '' || (((this.props.valueType === 'real' && mReal(value)) || (this.props.valueType !== 'real' && mInt(value))) && (this.props.maxValue === null || (parseFloat(value) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(value) >= this.props.minValue)))
+
+    realMatch = (value) => value && value.match(/-?\d+(\.(\d+)?)?/) && value.match(/-?\d+(\.(\d+)?)?/)[0] === value.match(/-?\d+(\.(\d+)?)?/).input
+
+    intMatch = (value) => value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input
+
     onChange = (value) => {
         let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
         if((value.length === 1 && value==='-') || (value.length === 2 && value==='0-')){
             this.setState({stringValue:'-'})
             return
         }
-        let realMatch = value && value.match(/-?\d+(\.(\d+)?)?/) && value.match(/-?\d+(\.(\d+)?)?/)[0] === value.match(/-?\d+(\.(\d+)?)?/).input,
-            intMatch = value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input,
-            legal = value === '' || (((this.props.valueType === 'real' && realMatch) || (this.props.valueType !== 'real' && intMatch)) && (this.props.maxValue === null || (parseFloat(value) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(value) >= this.props.minValue)))
+        let legal = this.isLegalValue(value,this.intMatch,this.realMatch)
         if (!legal && !this.props.validateOnBlur) {
             if (this.ref) {
                 this.ref.blur()
