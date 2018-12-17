@@ -122,7 +122,7 @@ export default class NumericInput extends Component {
 
     render() {
         const editable = this.props.editable
-        const sepratorWidth = this.props.sepratorWidth
+        const sepratorWidth = this.props.sepratorWidth || this.props.sepratorWidth
         const iconSize = this.props.iconSize
         const borderColor = this.props.borderColor
         const iconStyle = [style.icon, this.props.iconStyle]
