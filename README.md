@@ -98,7 +98,7 @@ Name                                | Type                                | Defa
 **borderColor**                     |`string`                             | `'#d4d4d4'`
 **iconStyle**                       |`object`                             | none
 **totalWidth**                      |`number`                             | calcSize(220)
-**seperatorWidth**                   |`number`                             | 1
+**separatorWidth**                   |`number`                             | 1
 **type**                            |`'plus-minus'` or `'up-down'`        | `'plus-minus'`
 **rounded**                         |`boolean`                            | false
 **textColor**                       |`string`                             | `'black'`
