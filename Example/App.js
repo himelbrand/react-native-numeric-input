@@ -18,6 +18,7 @@ const calcSize = create(PREDEF_RES.iphone7.px)
 
 export default class App extends Component {
   constructor(props) {
+    console.log('fgfgf ')
     super(props)
     this.state = {
       value: 0,
