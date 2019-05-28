@@ -2,6 +2,7 @@ declare module 'react-native-numeric-input' {
   import { ViewStyle } from 'react-native'
   import { Color } from 'csstype'
 
+  
   export interface INumericInputProps {
     value?: number
     minValue?: number
