@@ -72,6 +72,7 @@ import NumericInput from 'react-native-numeric-input'
         <NumericInput 
             value={this.state.value} 
             onChange={value => this.setState({value})} 
+            onLimitReached={(isMax,msg) => console.log(isMax,msg)}
             totalWidth={240} 
             totalHeight={50} 
             iconSize={25}
@@ -93,7 +94,7 @@ Name                                | Type                                | Defa
 **maxValue**                        |`number`                             | none
 **step**                            |`number`                             | 1
 **valueType**                       |`'integer'` or `'real'`                  | `'integer'`
-**initValue**                       |`number`                             | 0 - required , if not used will start at 0
+**initValue**                       |`number`                             | null if not used will start at 0
 **iconSize**                        |`number`                             | calcSize(30)
 **borderColor**                     |`string`                             | `'#d4d4d4'`
 **iconStyle**                       |`object`                             | none
@@ -109,6 +110,7 @@ Name                                | Type                                | Defa
 **leftButtonBackgroundColor**       |`string`                             | `'white'`
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
+**onLimiyReached**                  |`function`                           | none (empty function)
 **editable**                        |`boolean`                            | true
 **validateOnBlur**                  |`boolean`                            | true
 **reachMaxIncIconStyle**            |`object`                             | none
@@ -127,6 +129,8 @@ Name                                | Type                                | Defa
 * **reachMaxDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case maxValue is reached - **optional**
 * **reachMinIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case minValue is reached - **optional**
 * **reachMinDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case minValue is reached - **optional**
+* **onLimiyReached** - added on version 1.7.0, used to handle event of min/max reached, this function receives 2 arguments: (isMas:Boolean, msg:String) like in the advanced example above - **optional**
+
 
 ## Versioning
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
