@@ -77,11 +77,8 @@ export default class NumericInput extends Component {
             return
         }
         let legal = this.isLegalValue(value, this.realMatch, this.intMatch)
-        if (this.props.minValue !== null || (value <= this.props.minValue)) {
-            this.props.onLimitReached(true, 'Reached Minimum Value!')
-        }
-        if (this.props.maxValue !== null || (value >= this.props.maxValue)) {
-            this.props.onLimitReached(false, 'Reached Maximum Value!')
+        if (legal) {
+            this.setState({ lastValid: value })
         }
         if (!legal && !this.props.validateOnBlur) {
             if (this.ref) {
@@ -117,9 +114,16 @@ export default class NumericInput extends Component {
         }
     }
     onBlur = () => {
+
         let match = this.state.stringValue.match(/-?[0-9]\d*(\.\d+)?/)
         let legal = match && match[0] === match.input && ((this.props.maxValue === null || (parseFloat(this.state.stringValue) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(this.state.stringValue) >= this.props.minValue)))
         if (!legal) {
+            if (this.props.minValue !== null && (parseFloat(this.state.stringValue) <= this.props.minValue)) {
+                this.props.onLimitReached(true, 'Reached Minimum Value!')
+            }
+            if (this.props.maxValue !== null && (parseFloat(this.state.stringValue) >= this.props.maxValue)) {
+                this.props.onLimitReached(false, 'Reached Maximum Value!')
+            }
             if (this.ref) {
                 this.ref.blur()
                 setTimeout(() => {
@@ -146,13 +150,11 @@ export default class NumericInput extends Component {
     render() {
         const editable = this.props.editable
         const sepratorWidth = (typeof this.props.separatorWidth === 'undefined') ? this.props.sepratorWidth : this.props.separatorWidth;//supporting old property name sepratorWidth
-        const iconSize = this.props.iconSize
         const borderColor = this.props.borderColor
         const iconStyle = [style.icon, this.props.iconStyle]
         const totalWidth = this.props.totalWidth
         const totalHeight = this.props.totalHeight ? this.props.totalHeight : (totalWidth * 0.4)
         const inputWidth = this.props.type === 'up-down' ? (totalWidth * 0.6) : (totalWidth * 0.4)
-        const paddingRight = totalWidth * 0.18
         const borderRadiusTotal = totalHeight * 0.18
         const fontSize = totalHeight * 0.38
         const textColor = this.props.textColor
@@ -198,7 +200,6 @@ export default class NumericInput extends Component {
             this.props.rounded ?
                 { borderTopLeftRadius: borderRadiusTotal, borderBottomLeftRadius: borderRadiusTotal }
                 : {}]
-        const value = typeof this.props.value === 'number' ? this.props.value : this.state.value
         const inputWraperStyle = {
             alignSelf: 'center',
             borderLeftColor: borderColor,
@@ -327,6 +328,7 @@ NumericInput.defaultProps = {
     reachMaxIncIconStyle: {},
     reachMaxDecIconStyle: {},
     reachMinIncIconStyle: {},
-    reachMinDecIconStyle: {}
+    reachMinDecIconStyle: {},
+    onLimitReached: (isMax, msg) => { }
 
 }

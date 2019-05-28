@@ -86,7 +86,7 @@ export default class App extends Component {
         <Text style={styles.instructions}>
           Rounded Numeric Input - with minValue of 0 and maxValue of 5
         </Text>
-        <NumericInput initValue={this.state.value} value={this.state.value} onChange={value => this.setState({ value })} rounded type='up-down' minValue={0} maxValue={5} />
+        <NumericInput initValue={this.state.value} value={this.state.value} onChange={value => this.setState({ value })} rounded type='up-down' minValue={0} validateOnBlur maxValue={5} onLimitReached={(isMax,msg)=>console.log(isMax,msg)}/>
         <View style={styles.seprator} />
 
         <Text style={styles.instructions}>
