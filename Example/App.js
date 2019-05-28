@@ -92,7 +92,7 @@ export default class App extends Component {
         <Text style={styles.instructions}>
           Rounded Numeric Input - with styling and initial value of 6
         </Text>
-        <NumericInput initValue={this.state.v5}
+        <NumericInput 
           value={this.state.v5}
           onChange={(v5) => this.setState({ v5 })} rounded type='up-down' textColor='#26547C' iconStyle={{ color: 'green' }} upDownButtonsBackgroundColor='#06D6A0' />
         <View style={styles.seprator} />
