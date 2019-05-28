@@ -8,7 +8,7 @@ declare module 'react-native-numeric-input' {
     maxValue?: number
     step?: number
     valueType?: 'integer' | 'real'
-    initValue: number
+    initValue?: number
     iconSize?: number
     borderColor?: Color
     iconStyle?: ViewStyle
@@ -24,6 +24,7 @@ declare module 'react-native-numeric-input' {
     leftButtonBackgroundColor?: Color
     totalHeight?: number
     onChange: (value: number) => void
+    onLimitReached?: (isMax: boolean, msg: string) => void
     editable?: boolean
     validateOnBlur?: boolean
     reachMaxIncIconStyle?: ViewStyle

@@ -44,7 +44,7 @@ export default class App extends Component {
           Numeric Input Examples
         </Text>
         <NumericInput
-          initValue={this.state.v1}
+          // initValue={this.state.v1}
           value={this.state.v1}
           onChange={(v1) => this.setState({ v1 })}
           totalWidth={150}
@@ -70,9 +70,9 @@ export default class App extends Component {
         <Text style={styles.instructions}>
           Rounded Numeric Input - with minValue of 0
         </Text>
-        <NumericInput initValue={this.state.v3}
+        <NumericInput
           value={this.state.v3}
-          onChange={(v3) => this.setState({ v3 })} rounded minValue={0} />
+          onChange={(v3) => this.setState({ v3 })} rounded minValue={0} onLimitReached={(isMax,msg)=>console.log(isMax,msg)}/>
         <View style={styles.seprator} />
 
         <Text style={styles.instructions}>
@@ -131,7 +131,7 @@ export default class App extends Component {
           onChange={(v8) => this.setState({ v8 })} 
           totalWidth={calcSize(500)}
           totalHeight={calcSize(100)}
-          textColor='#B0228C'
+          textColor='#B0228C' 
           iconStyle={{ color: 'white' }}
           rightButtonBackgroundColor='#EA3788'
           leftButtonBackgroundColor='#E56B70' />
