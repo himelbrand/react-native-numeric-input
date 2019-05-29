@@ -117,6 +117,7 @@ Name                                | Type                                | Defa
 **reachMaxDecIconStyle**            |`object`                             | none
 **reachMinIncIconStyle**            |`object`                             | none
 **reachMinDecIconStyle**            |`object`                             | none
+**extraTextInputProps**             |`object`                             | none
 
 ### notes about props
 
@@ -129,7 +130,8 @@ Name                                | Type                                | Defa
 * **reachMaxDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case maxValue is reached - **optional**
 * **reachMinIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case minValue is reached - **optional**
 * **reachMinDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case minValue is reached - **optional**
-* **onLimiyReached** - added on version 1.7.0, used to handle event of min/max reached, this function receives 2 arguments: (isMas:Boolean, msg:String) like in the advanced example above - **optional**
+* **onLimiyReached** - added on version 1.7.0, used to handle event of min/max reached, **this function receives 2 arguments: (isMas:Boolean, msg:String)** like in the advanced example above - **optional**
+* **extraTextInputProps**  - added on version 1.8.0, used to add props used for the original TextInput component that are not used/supported in this component explicitly - **optional**
 
 
 ## Versioning
