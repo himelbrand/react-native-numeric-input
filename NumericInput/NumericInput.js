@@ -34,24 +34,29 @@ export default class NumericInput extends Component {
     }
     inc = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
-        if (this.props.maxValue === null || (value < this.props.maxValue)) {
+        if (this.props.maxValue === null || (value + this.props.step < this.props.maxValue)) {
             value = (value + this.props.step).toFixed(12)
             value = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
             this.setState({ value, stringValue: value.toString() })
         } else if (this.props.maxValue !== null) {
             this.props.onLimitReached(true, 'Reached Maximum Value!')
+            value = this.props.maxValue
+            this.setState({ value, stringValue: value.toString() })
+
         }
         if (value !== this.props.value)
             this.props.onChange && this.props.onChange(Number(value))
     }
     dec = () => {
         let value = this.props.value && (typeof this.props.value === 'number') ? this.props.value : this.state.value
-        if (this.props.minValue === null || (value > this.props.minValue)) {
+        if (this.props.minValue === null || (value - this.props.step > this.props.minValue)) {
             value = (value - this.props.step).toFixed(12)
             value = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
             this.setState({ value, stringValue: value.toString() })
         } else if (this.props.minValue !== null) {
             this.props.onLimitReached(false, 'Reached Minimum Value!')
+            value = this.props.minValue
+            this.setState({ value, stringValue: value.toString() })
         }
         if (value !== this.props.value)
             this.props.onChange && this.props.onChange(Number(value))
