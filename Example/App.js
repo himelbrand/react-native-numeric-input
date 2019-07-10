@@ -46,12 +46,13 @@ export default class App extends Component {
         <NumericInput
           // initValue={this.state.v1}
           value={this.state.v1}
-          onChange={(v1) => this.setState({ v1 })}
+          onChange={(v1) => {this.setState({ v1 });console.log(v1)}}
           totalWidth={150}
           totalHeight={35}
           minValue={0}
           maxValue={9999}
-          step={1}
+          onLimitReached={(isMAx,msg)=>console.log(msg)}
+          step={5}
           iconStyle={{ fontSize: 15, color: '#434A5E' }}
           inputStyle={{ fontSize: 18, color: '#434A5E' }}
           valueType='real'
