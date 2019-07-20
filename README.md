@@ -11,7 +11,9 @@ you can check out the very simple react native example app
 just click [here](https://github.com/himelbrand/react-native-numeric-input/tree/master/Example) and follow the instructions
 enjoy!
 
-## Installation 
+## Installation
+### Latest version
+v1.8.1
 #### if you have react-native-vector-icons installed in your project
 ```bash
 yarn add react-native-numeric-input
