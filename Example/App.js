@@ -31,6 +31,7 @@ export default class App extends Component {
       v6: 0,
       v7: 0,
       v8: 0,
+      value1: 1
     }
     this.amount = 0
   }
@@ -43,7 +44,22 @@ export default class App extends Component {
         <Text style={styles.welcome}>
           Numeric Input Examples
         </Text>
-       
+        <NumericInput
+          value={this.state.value1}
+          onChange={value1 => { this.setState({ value1 }); console.log(this.state.value1); }}
+          onLimitReached={(isMin, msg) => console.log(isMin, msg)}
+          totalWidth={80}
+          totalHeight={30}
+          iconSize={10}
+          step={1}
+          minValue={0}
+          valueType="real"
+          rounded editable={false}
+          textColor="#B0228C"
+          iconStyle={{ color: "white" }}
+          rightButtonBackgroundColor="#18c2ef"
+          leftButtonBackgroundColor="#ff8080"
+        />
         <NumericInput
           // initValue={this.state.v1}
           value={this.state.v1}
