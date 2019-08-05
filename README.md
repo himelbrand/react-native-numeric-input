@@ -112,7 +112,7 @@ Name                                | Type                                | Defa
 **leftButtonBackgroundColor**       |`string`                             | `'white'`
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
-**onLimiyReached**                  |`function`                           | none (empty function)
+**onLimitReached**                  |`function`                           | none (empty function)
 **editable**                        |`boolean`                            | true
 **validateOnBlur**                  |`boolean`                            | true
 **reachMaxIncIconStyle**            |`object`                             | none
