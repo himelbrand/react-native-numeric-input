@@ -11,10 +11,11 @@ export default class NumericInput extends Component {
     constructor(props) {
         super(props)
         const noInitSent = props.initValue !== 0 && !props.initValue
+        const value = noInitSent ? props.value ? props.value : 0 : props.initValue
         this.state = {
-            value: noInitSent ? props.value ? props.value : 0 : props.initValue,
-            lastValid: noInitSent ? props.value ? props.value : 0 : props.initValue,
-            stringValue: (noInitSent ? props.value ? props.value : 0 : props.initValue).toString(),
+            value,
+            lastValid: value,
+            stringValue: this.deriveStringValue(value),
         }
         this.ref = null
     }
@@ -22,12 +23,18 @@ export default class NumericInput extends Component {
         const initSent = !(props.initValue !== 0 && !props.initValue)
         if (props.initValue !== this.state.value && initSent) {
 
+            const value = props.initValue
             this.setState({
-                value: props.initValue,
-                lastValid: props.initValue,
-                stringValue: props.initValue.toString()
+                value: value,
+                lastValid: value,
+                stringValue: this.deriveStringValue(value),
             });
         }
+    }
+    deriveStringValue(value) {
+        const { valueType, enumValues } = this.props;
+        if (valueType === 'enum' && enumValues != null) return enumValues.length > value ? enumValues[value] : value.toString();
+        return value.toString();
     }
     updateBaseResolution = (width, height) => {
         calcSize = create({ width, height })
@@ -37,11 +44,15 @@ export default class NumericInput extends Component {
         if (this.props.maxValue === null || (value + this.props.step < this.props.maxValue)) {
             value = (value + this.props.step).toFixed(12)
             value = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
-            this.setState({ value, stringValue: value.toString() })
+            this.setState({ value, stringValue: this.deriveStringValue(value) })
         } else if (this.props.maxValue !== null) {
-            this.props.onLimitReached(true, 'Reached Maximum Value!')
-            value = this.props.maxValue
-            this.setState({ value, stringValue: value.toString() })
+            if (this.props.wrapped && value === this.props.maxValue) {
+                value = this.props.minValue
+            } else {
+                this.props.onLimitReached(true, 'Reached Maximum Value!')
+                value = this.props.maxValue
+            }
+            this.setState({ value, stringValue: this.deriveStringValue(value) })
 
         }
         if (value !== this.props.value)
@@ -53,12 +64,16 @@ export default class NumericInput extends Component {
             value = (value - this.props.step).toFixed(12)
             value = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
         } else if (this.props.minValue !== null) {
-            this.props.onLimitReached(false, 'Reached Minimum Value!')
-            value = this.props.minValue
+            if (this.props.wrapped && value === this.props.minValue) {
+                value = this.props.maxValue
+            } else {
+                this.props.onLimitReached(false, 'Reached Minimum Value!')
+                value = this.props.minValue
+            }
         }
         if (value !== this.props.value)
             this.props.onChange && this.props.onChange(Number(value))
-        this.setState({ value, stringValue: value.toString() })
+        this.setState({ value, stringValue: this.deriveStringValue(value) })
     }
     isLegalValue = (value, mReal, mInt) => value === '' || (((this.props.valueType === 'real' && mReal(value)) || (this.props.valueType !== 'real' && mInt(value))) && (this.props.maxValue === null || (parseFloat(value) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(value) >= this.props.minValue)))
 
@@ -101,19 +116,19 @@ export default class NumericInput extends Component {
             }
 
         } else if (!legal && this.props.validateOnBlur) {
-            this.setState({ stringValue: value })
+            this.setState({ stringValue: this.deriveStringValue(value) })
             let parsedValue = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
             parsedValue = isNaN(parsedValue) ? 0 : parsedValue
             if (parsedValue !== this.props.value)
                 this.props.onChange && this.props.onChange(parsedValue)
-            this.setState({ value: parsedValue, legal, stringValue: parsedValue.toString() })
+            this.setState({ value: parsedValue, legal, stringValue: this.deriveStringValue(parsedValue) })
         } else {
-            this.setState({ stringValue: value })
+            this.setState({ stringValue: this.deriveStringValue(value) })
             let parsedValue = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
             parsedValue = isNaN(parsedValue) ? 0 : parsedValue
             if (parsedValue !== this.props.value)
                 this.props.onChange && this.props.onChange(parsedValue)
-            this.setState({ value: parsedValue, legal, stringValue: parsedValue.toString() })
+            this.setState({ value: parsedValue, legal, stringValue: this.deriveStringValue(parsedValue) })
 
         }
     }
@@ -227,13 +242,13 @@ export default class NumericInput extends Component {
         else return (
             <View style={inputContainerStyle}>
                 <Button onPress={this.dec} style={leftButtonStyle}>
-                    <Icon name='md-remove' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxDecIconStyle : {}, minReached ? this.props.reachMinDecIconStyle : {}]} />
+                    <Icon name={this.props.valueType === 'enum' ? 'ios-arrow-back' : 'md-remove'} size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxDecIconStyle : {}, minReached ? this.props.reachMinDecIconStyle : {}]} />
                 </Button>
                 <View style={[inputWraperStyle]}>
                     <TextInput {...this.props.extraTextInputProps} editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={this.state.stringValue} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur} onFocus={this.onFocus} />
                 </View>
                 <Button onPress={this.inc} style={rightButtonStyle}>
-                    <Icon name='md-add' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxIncIconStyle : {}, minReached ? this.props.reachMinIncIconStyle : {}]} />
+                    <Icon name={this.props.valueType === 'enum' ? 'ios-arrow-forward' : 'md-add'} size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxIncIconStyle : {}, minReached ? this.props.reachMinIncIconStyle : {}]} />
                 </Button>
             </View>)
 
@@ -286,7 +301,9 @@ NumericInput.propTypes = {
     totalHeight: PropTypes.number,
     sepratorWidth: PropTypes.number,
     type: PropTypes.oneOf(['up-down', 'plus-minus']),
-    valueType: PropTypes.oneOf(['real', 'integer']),
+    valueType: PropTypes.oneOf(['real', 'integer', 'enum']),
+    enumValues: PropTypes.arrayOf(PropTypes.string),
+    wrapped: PropTypes.bool,
     rounded: PropTypes.any,
     textColor: PropTypes.string,
     containerStyle: PropTypes.any,
@@ -321,6 +338,8 @@ NumericInput.defaultProps = {
     inputStyle: {},
     initValue: null,
     valueType: 'integer',
+    enumValues: null,
+    wrapped: false,
     value: null,
     minValue: null,
     maxValue: null,

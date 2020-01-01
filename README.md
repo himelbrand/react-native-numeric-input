@@ -95,7 +95,9 @@ Name                                | Type                                | Defa
 **minValue**                        |`number`                             | none
 **maxValue**                        |`number`                             | none
 **step**                            |`number`                             | 1
-**valueType**                       |`'integer'` or `'real'`                  | `'integer'`
+**valueType**                       |`'integer'`, `'real'` or `'enum`     | `'integer'`
+**enumValues**                      |`string[]`                           | none
+**wrapped**                         |`boolean`                            | false
 **initValue**                       |`number`                             | null if not used will start at 0
 **iconSize**                        |`number`                             | calcSize(30)
 **borderColor**                     |`string`                             | `'#d4d4d4'`
