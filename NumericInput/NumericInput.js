@@ -18,15 +18,17 @@ export default class NumericInput extends Component {
         }
         this.ref = null
     }
-    componentWillReceiveProps(props) {
+    static getDerivedStateFromProps(props, state){
         const initSent = !(props.initValue !== 0 && !props.initValue)
-        if (props.initValue !== this.state.value && initSent) {
+        if (props.initValue !== state.value && initSent) {
 
-            this.setState({
+            return {
                 value: props.initValue,
                 lastValid: props.initValue,
-                stringValue: this.stringify(props.initValue)
-            });
+                stringValue: NumericInput.stringify(props.initValue,props.decimals)
+            };
+        } else {
+            return null;
         }
     }
     updateBaseResolution = (width, height) => {
