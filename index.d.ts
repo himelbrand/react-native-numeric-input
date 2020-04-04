@@ -7,6 +7,7 @@ declare module 'react-native-numeric-input' {
     minValue?: number
     maxValue?: number
     step?: number
+    decimals?: number
     valueType?: 'integer' | 'real'
     initValue?: number
     iconSize?: number

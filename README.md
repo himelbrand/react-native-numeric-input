@@ -80,6 +80,7 @@ import NumericInput from 'react-native-numeric-input'
             iconSize={25}
             step={1.5}
             valueType='real'
+            decimals="2"
             rounded 
             textColor='#B0228C' 
             iconStyle={{ color: 'white' }} 
@@ -120,6 +121,7 @@ Name                                | Type                                | Defa
 **reachMinIncIconStyle**            |`object`                             | none
 **reachMinDecIconStyle**            |`object`                             | none
 **extraTextInputProps**             |`object`                             | none
+**decimals**                        |`number`                             | none
 
 ### notes about props
 
