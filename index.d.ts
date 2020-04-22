@@ -1,4 +1,5 @@
 declare module 'react-native-numeric-input' {
+  import { ReactElement } from 'react';
   import { ViewStyle } from 'react-native'
   import { Color } from 'csstype'
 
@@ -22,6 +23,8 @@ declare module 'react-native-numeric-input' {
     upDownButtonsBackgroundColor?: Color
     rightButtonBackgroundColor?: Color
     leftButtonBackgroundColor?: Color
+    customDecIcon?: ReactElement<any>
+    customIncIcon?: ReactElement<any>
     totalHeight?: number
     onChange: (value: number) => void
     onLimitReached?: (isMax: boolean, msg: string) => void
