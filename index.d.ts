@@ -31,12 +31,16 @@ declare module 'react-native-numeric-input' {
     reachMaxDecIconStyle?: ViewStyle
     reachMinIncIconStyle?: ViewStyle
     reachMinDecIconStyle?: ViewStyle
+    reachMaxIncButtonStyle?: ViewStyle
+    reachMaxMinButtonStyle?: ViewStyle
+    reachMaxDecButtonStyle?: ViewStyle
+    reachMinDecButtonStyle?: ViewStyle
     extraTextInputProps?: object
   }
 
   export default class NumericInput extends React.Component<
     INumericInputProps
-  > {}
+    > { }
 
   export const DIMENTIONS: { height: number; width: number }
 }
