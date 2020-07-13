@@ -35,6 +35,8 @@ declare module 'react-native-numeric-input' {
     reachMaxMinButtonStyle?: ViewStyle
     reachMaxDecButtonStyle?: ViewStyle
     reachMinDecButtonStyle?: ViewStyle
+    disableDecButtonOnMinReach?: boolean
+    disableIncButtonOnMaxReach?: boolean
     extraTextInputProps?: object
   }
 
