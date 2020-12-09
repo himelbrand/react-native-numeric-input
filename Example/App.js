@@ -4,22 +4,16 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  ScrollView,
-  View
-} from 'react-native';
-import NumericInput from 'react-native-numeric-input'
-import { create, PREDEF_RES } from 'react-native-pixel-perfect'
-const calcSize = create(PREDEF_RES.iphone7.px)
-
+import React, { Component } from "react";
+import { StyleSheet, Text, ScrollView, View } from "react-native";
+import NumericInput from "react-native-numeric-input";
+import { create, PREDEF_RES } from "react-native-pixel-perfect";
+const calcSize = create(PREDEF_RES.iphone7.px);
 
 export default class App extends Component {
   constructor(props) {
-    console.log('fgfgf ')
-    super(props)
+    console.log("fgfgf ");
+    super(props);
     this.state = {
       value: 0,
       amount: 0,
@@ -31,22 +25,28 @@ export default class App extends Component {
       v6: 0,
       v7: 0,
       v8: 0,
-      value1: 1
-    }
-    this.amount = 0
+      v9: 0,
+      v10: 1,
+      value1: 1,
+    };
+    this.amount = 0;
   }
   changeAmount(text) {
-    this.amount = text
+    this.amount = text;
   }
   render() {
     return (
-      <ScrollView style={{ paddingBottom: 200 }} contentContainerStyle={styles.container}>
-        <Text style={styles.welcome}>
-          Numeric Input Examples
-        </Text>
+      <ScrollView
+        style={{ paddingBottom: 200 }}
+        contentContainerStyle={styles.container}
+      >
+        <Text style={styles.welcome}>Numeric Input Examples</Text>
         <NumericInput
           value={this.state.value1}
-          onChange={value1 => { this.setState({ value1 }); console.log(this.state.value1); }}
+          onChange={(value1) => {
+            this.setState({ value1 });
+            console.log(this.state.value1);
+          }}
           onLimitReached={(isMin, msg) => console.log(isMin, msg)}
           totalWidth={80}
           totalHeight={30}
@@ -54,7 +54,8 @@ export default class App extends Component {
           step={1}
           minValue={0}
           valueType="real"
-          rounded editable={false}
+          rounded
+          editable={false}
           textColor="#B0228C"
           iconStyle={{ color: "white" }}
           rightButtonBackgroundColor="#18c2ef"
@@ -63,48 +64,99 @@ export default class App extends Component {
         <NumericInput
           // initValue={this.state.v1}
           value={this.state.v1}
-          onChange={(v1) => { this.setState({ v1 }); console.log(v1) }}
+          onChange={(v1) => {
+            this.setState({ v1 });
+            console.log(v1);
+          }}
           totalWidth={150}
           totalHeight={35}
           minValue={0}
           maxValue={9999}
           onLimitReached={(isMAx, msg) => console.log(msg)}
           step={5}
-          iconStyle={{ fontSize: 15, color: '#434A5E' }}
-          inputStyle={{ fontSize: 18, color: '#434A5E' }}
-          valueType='real'
-          borderColor='#C7CBD6'
-          rightButtonBackgroundColor='#C7CBD6'
-          leftButtonBackgroundColor='#C7CBD6'
+          iconStyle={{ fontSize: 15, color: "#434A5E" }}
+          inputStyle={{ fontSize: 18, color: "#434A5E" }}
+          valueType="real"
+          borderColor="#C7CBD6"
+          rightButtonBackgroundColor="#C7CBD6"
+          leftButtonBackgroundColor="#C7CBD6"
         />
-        <Text style={styles.instructions}>
-          Basic Numeric Input - no limits
-        </Text>
+        <Text style={styles.instructions}>Basic Numeric Input - no limits</Text>
         <NumericInput
           initValue={this.state.v2}
           value={this.state.v2}
-          onChange={(v2) => this.setState({ v2 })} />
+          onChange={(v2) => this.setState({ v2 })}
+        />
         <View style={styles.seprator} />
         <Text style={styles.instructions}>
           Rounded Numeric Input - with minValue of 0
         </Text>
         <NumericInput
           value={this.state.v3}
-          onChange={(v3) => this.setState({ v3 })} rounded minValue={0} onLimitReached={(isMax, msg) => console.log(isMax, msg)} />
+          onChange={(v3) => this.setState({ v3 })}
+          rounded
+          minValue={0}
+          onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+        />
         <View style={styles.seprator} />
 
         <Text style={styles.instructions}>
           Basic Numeric Input - with step of 0.5 and valueType real
         </Text>
-        <NumericInput initValue={this.state.v4}
+        <NumericInput
+          initValue={this.state.v4}
           value={this.state.v4}
-          onChange={(v4) => this.setState({ v4 })} type='up-down' valueType='real' step={0.5} />
+          onChange={(v4) => this.setState({ v4 })}
+          type="up-down"
+          valueType="real"
+          step={0.5}
+        />
+
+        <View style={styles.seprator} />
+
+        <Text style={styles.instructions}>
+          {" "}
+          Basic Numeric Input - with hide buttons
+        </Text>
+        <NumericInput
+          initValue={this.state.v9}
+          value={this.state.v9}
+          onChange={(v9) => this.setState({ v9 })}
+          type="up-down"
+          valueType="real"
+          hideButtons={true}
+        />
+
+        <View style={styles.seprator} />
+
+        <Text style={styles.instructions}>
+          Rounded Numeric Input - with hide buttons
+        </Text>
+        <NumericInput
+          initValue={this.state.v10}
+          value={this.state.v10}
+          onChange={(v10) => this.setState({ v10 })}
+          rounded
+          type="up-down"
+          hideButtons={true}
+        />
         <View style={styles.seprator} />
 
         <Text style={styles.instructions}>
           Rounded Numeric Input - with minValue of 0 and maxValue of 5
         </Text>
-        <NumericInput initValue={this.state.value} value={this.state.value} onChange={value => this.setState({ value })} rounded type='up-down' minValue={0} validateOnBlur maxValue={5} onLimitReached={(isMax, msg) => console.log(isMax, msg)} />
+        <NumericInput
+          initValue={this.state.value}
+          value={this.state.value}
+          onChange={(value) => this.setState({ value })}
+          rounded
+          type="up-down"
+          minValue={0}
+          validateOnBlur
+          maxValue={5}
+          onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+          hideButtons={true}
+        />
         <View style={styles.seprator} />
 
         <Text style={styles.instructions}>
@@ -112,17 +164,30 @@ export default class App extends Component {
         </Text>
         <NumericInput
           value={this.state.v5}
-          onChange={(v5) => this.setState({ v5 })} rounded type='up-down' textColor='#26547C' iconStyle={{ color: 'green' }} upDownButtonsBackgroundColor='#06D6A0' />
+          onChange={(v5) => this.setState({ v5 })}
+          rounded
+          type="up-down"
+          textColor="#26547C"
+          iconStyle={{ color: "green" }}
+          upDownButtonsBackgroundColor="#06D6A0"
+          hideButtons={true}
+        />
         <View style={styles.seprator} />
 
         <Text style={styles.instructions}>
           Rounded Numeric Input with styling
         </Text>
-        <NumericInput initValue={this.state.v6}
+        <NumericInput
+          initValue={this.state.v6}
           value={this.state.v6}
-          onChange={(v6) => this.setState({ v6 })} rounded textColor='#59656F' iconStyle={{ color: 'white' }} rightButtonBackgroundColor='#AC9FBB' leftButtonBackgroundColor='#DDBDD5' />
+          onChange={(v6) => this.setState({ v6 })}
+          rounded
+          textColor="#59656F"
+          iconStyle={{ color: "white" }}
+          rightButtonBackgroundColor="#AC9FBB"
+          leftButtonBackgroundColor="#DDBDD5"
+        />
         <View style={styles.seprator} />
-
 
         <Text style={styles.instructions}>
           Rounded Numeric Input with custom width
@@ -133,12 +198,12 @@ export default class App extends Component {
           onChange={(v7) => this.setState({ v7 })}
           totalWidth={200}
           rounded
-          textColor='#103900'
-          iconStyle={{ color: 'white' }}
-          rightButtonBackgroundColor='#0FFF95'
-          leftButtonBackgroundColor='#06BA63' />
+          textColor="#103900"
+          iconStyle={{ color: "white" }}
+          rightButtonBackgroundColor="#0FFF95"
+          leftButtonBackgroundColor="#06BA63"
+        />
         <View style={styles.seprator} />
-
 
         <Text style={styles.instructions}>
           Rounded Numeric Input with custom width and height
@@ -149,10 +214,11 @@ export default class App extends Component {
           onChange={(v8) => this.setState({ v8 })}
           totalWidth={calcSize(500)}
           totalHeight={calcSize(100)}
-          textColor='#B0228C'
-          iconStyle={{ color: 'white' }}
-          rightButtonBackgroundColor='#EA3788'
-          leftButtonBackgroundColor='#E56B70' />
+          textColor="#B0228C"
+          iconStyle={{ color: "white" }}
+          rightButtonBackgroundColor="#EA3788"
+          leftButtonBackgroundColor="#E56B70"
+        />
       </ScrollView>
     );
   }
@@ -162,18 +228,18 @@ const styles = StyleSheet.create({
   container: {
     height: null,
     width: null,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     margin: 60,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
+    textAlign: "center",
+    color: "#333333",
     marginBottom: 5,
     marginTop: 5,
   },
@@ -181,5 +247,5 @@ const styles = StyleSheet.create({
     height: 10,
     width: 200,
     margin: 10,
-  }
+  },
 });
