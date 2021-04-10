@@ -1,6 +1,6 @@
 {
   "name": "react-native-numeric-input",
-  "version": "1.8.2",
+  "version": "1.9.0",
   "description": "a stylish numeric input for react native",
   "main": "index.js",
   "scripts": {
