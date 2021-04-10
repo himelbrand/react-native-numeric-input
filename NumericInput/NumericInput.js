@@ -21,7 +21,7 @@ export default class NumericInput extends Component {
 
     // this.props refers to the new props
     componentDidUpdate() {
-        const initSent = !(this.props.initValue !== 0 && !this.props.initValue); 
+        const initSent = !(this.props.initValue !== 0 && !this.props.initValue);
 
         // compare the new value (props.initValue) with the existing/old one (this.state.value)
         if (this.props.initValue !== this.state.value && initSent) {
@@ -32,7 +32,7 @@ export default class NumericInput extends Component {
             });
         }
     }
-    
+
     updateBaseResolution = (width, height) => {
         calcSize = create({ width, height })
     }
@@ -215,28 +215,32 @@ export default class NumericInput extends Component {
             borderRightWidth: sepratorWidth,
             borderRightColor: borderColor
         }
+        const upDownButtonStyle = [{ flex: 1, width: '100%', alignItems: 'center' }]
+        const disableInc = this.props.disableIncButtonOnMaxReach && maxReached ? true : false;
+        const disableDec = this.props.disableDecButtonOnMaxReach && minReached ? true : false;
+
         if (this.props.type === 'up-down')
             return (
                 <View style={inputContainerStyle}>
                     <TextInput {...this.props.extraTextInputProps} editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={this.state.stringValue} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur} onFocus={this.onFocus} />
                     <View style={upDownStyle}>
-                        <Button onPress={this.inc} style={{ flex: 1, width: '100%', alignItems: 'center' }}>
+                        <Button onPress={this.inc} disabled={disableInc} style={[...upDownButtonStyle, maxReached ? this.props.reachMaxIncButtonStyle : {}, minReached ? this.props.reachMinIncButtonStyle : {}]}>
                             <Icon name='ios-arrow-up' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxIncIconStyle : {}, minReached ? this.props.reachMinIncIconStyle : {}]} />
                         </Button>
-                        <Button onPress={this.dec} style={{ flex: 1, width: '100%', alignItems: 'center' }}>
+                        <Button onPress={this.dec} disabled={disableDec} style={[...upDownButtonStyle, maxReached ? this.props.reachMaxDecButtonStyle : {}, minReached ? this.props.reachMinDecButtonStyle : {}]}>
                             <Icon name='ios-arrow-down' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxDecIconStyle : {}, minReached ? this.props.reachMinDecIconStyle : {}]} />
                         </Button>
                     </View>
                 </View>)
         else return (
             <View style={inputContainerStyle}>
-                <Button onPress={this.dec} style={leftButtonStyle}>
+                <Button onPress={this.dec} disabled={disableDec} style={[leftButtonStyle, maxReached ? this.props.reachMaxDecButtonStyle : {}, minReached ? this.props.reachMinDecButtonStyle : {}]}>
                     <Icon name='md-remove' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxDecIconStyle : {}, minReached ? this.props.reachMinDecIconStyle : {}]} />
                 </Button>
                 <View style={[inputWraperStyle]}>
                     <TextInput {...this.props.extraTextInputProps} editable={editable} returnKeyType='done' underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' value={this.state.stringValue} onChangeText={this.onChange} style={inputStyle} ref={ref => this.ref = ref} onBlur={this.onBlur} onFocus={this.onFocus} />
                 </View>
-                <Button onPress={this.inc} style={rightButtonStyle}>
+                <Button onPress={this.inc} disabled={disableInc} style={[rightButtonStyle, maxReached ? this.props.reachMaxIncButtonStyle : {}, minReached ? this.props.reachMinIncButtonStyle : {}]}>
                     <Icon name='md-add' size={fontSize} style={[...iconStyle, maxReached ? this.props.reachMaxIncIconStyle : {}, minReached ? this.props.reachMinIncIconStyle : {}]} />
                 </Button>
             </View>)
