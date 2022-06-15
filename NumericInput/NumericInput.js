@@ -14,7 +14,7 @@ export default class NumericInput extends Component {
         this.state = {
             value: noInitSent ? props.value ? props.value : 0 : props.initValue,
             lastValid: noInitSent ? props.value ? props.value : 0 : props.initValue,
-            stringValue: (noInitSent ? props.value ? props.value : 0 : props.initValue).toString(),
+            stringValue: (noInitSent ? props.value ? props.value : 0 : props.initValue).toFixed(this.decimalCount(props.step)),
         }
         this.ref = null
     }
