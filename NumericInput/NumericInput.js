@@ -14,7 +14,7 @@ export default class NumericInput extends Component {
         this.state = {
             value: noInitSent ? props.value ? props.value : 0 : props.initValue,
             lastValid: noInitSent ? props.value ? props.value : 0 : props.initValue,
-            stringValue: (noInitSent ? props.value ? props.value : 0 : props.initValue).toString(),
+            stringValue: (noInitSent ? props.value ? props.value : 0 : props.initValue).toFixed(this.decimalCount(props.step)),
         }
         this.ref = null
     }
@@ -33,6 +33,13 @@ export default class NumericInput extends Component {
         }
     }
     
+    decimalCount = (num) => {
+        const numStr = String(num);
+        if (numStr.includes('.')) {
+           return numStr.split('.')[1].length;
+        };
+        return 0;
+    }
     updateBaseResolution = (width, height) => {
         calcSize = create({ width, height })
     }
@@ -41,11 +48,11 @@ export default class NumericInput extends Component {
         if (this.props.maxValue === null || (value + this.props.step < this.props.maxValue)) {
             value = (value + this.props.step).toFixed(12)
             value = this.props.valueType === 'real' ? parseFloat(value) : parseInt(value)
-            this.setState({ value, stringValue: value.toString() })
+            this.setState({ value, stringValue: value.toFixed(this.decimalCount(this.props.step)) })
         } else if (this.props.maxValue !== null) {
             this.props.onLimitReached(true, 'Reached Maximum Value!')
             value = this.props.maxValue
-            this.setState({ value, stringValue: value.toString() })
+            this.setState({ value, stringValue: value.toFixed(this.decimalCount(this.props.step)) })
 
         }
         if (value !== this.props.value)
@@ -62,7 +69,7 @@ export default class NumericInput extends Component {
         }
         if (value !== this.props.value)
             this.props.onChange && this.props.onChange(Number(value))
-        this.setState({ value, stringValue: value.toString() })
+        this.setState({ value, stringValue: value.toFixed(this.decimalCount(this.props.step)) })
     }
     isLegalValue = (value, mReal, mInt) => value === '' || (((this.props.valueType === 'real' && mReal(value)) || (this.props.valueType !== 'real' && mInt(value))) && (this.props.maxValue === null || (parseFloat(value) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(value) >= this.props.minValue)))
 
