@@ -13,7 +13,7 @@ enjoy!
 
 ## Installation
 ### Latest version
-v1.9.0
+v1.9.1
 #### if you have react-native-vector-icons installed in your project
 ```bash
 yarn add react-native-numeric-input
@@ -110,6 +110,8 @@ Name                                | Type                                | Defa
 **upDownButtonsBackgroundColor**    |`string`                             | `'white'`
 **rightButtonBackgroundColor**      |`string`                             | `'white'`
 **leftButtonBackgroundColor**       |`string`                             | `'white'`
+**customDecIcon**                   |`element` or `node`                  | none
+**customIncIcon**                   |`element` or `node`                  | none
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
 **onLimitReached**                  |`function`                           | none (empty function)
@@ -134,6 +136,7 @@ Name                                | Type                                | Defa
 * **reachMinDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case minValue is reached - **optional**
 * **onLimitReached** - added on version 1.7.0, used to handle event of min/max reached, **this function receives 2 arguments: (isMas:Boolean, msg:String)** like in the advanced example above - **optional**
 * **extraTextInputProps**  - added on version 1.8.0, used to add props used for the original TextInput component that are not used/supported in this component explicitly - **optional**
+* **customDecIcon** & **customIncIcon**  - added on version 1.8.4, used for custom icons inside `'plus-minus'` buttons - **optional**
 
 
 ## Versioning
