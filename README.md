@@ -81,6 +81,7 @@ import NumericInput from 'react-native-numeric-input'
             step={1.5}
             valueType='real'
             rounded 
+            fourButton 
             textColor='#B0228C' 
             iconStyle={{ color: 'white' }} 
             rightButtonBackgroundColor='#EA3788' 
@@ -95,15 +96,16 @@ Name                                | Type                                | Defa
 **minValue**                        |`number`                             | none
 **maxValue**                        |`number`                             | none
 **step**                            |`number`                             | 1
-**valueType**                       |`'integer'` or `'real'`                  | `'integer'`
+**valueType**                       |`'integer'` or `'real'`              | `'integer'`
 **initValue**                       |`number`                             | null if not used will start at 0
 **iconSize**                        |`number`                             | calcSize(30)
 **borderColor**                     |`string`                             | `'#d4d4d4'`
 **iconStyle**                       |`object`                             | none
 **totalWidth**                      |`number`                             | calcSize(220)
-**separatorWidth**                   |`number`                             | 1
+**separatorWidth**                  |`number`                             | 1
 **type**                            |`'plus-minus'` or `'up-down'`        | `'plus-minus'`
 **rounded**                         |`boolean`                            | false
+**fourButton**                      |`boolean`                            | false
 **textColor**                       |`string`                             | `'black'`
 **containerStyle**                  |`object`                             | none
 **inputStyle**                      |`object`                             | none
@@ -128,6 +130,7 @@ Name                                | Type                                | Defa
 * **totalWidth prop** - this prop is for the entire component width, and all other sizes are derived from it , unless given other size props
 * **initValue prop** - if using value prop, this is not needed and the initial value can be given by the value prop
 * **validateOnBlur** - added on version 1.3.2, if set to false the text input will validate while typing, not recommended, so just keep it true unless there is a good reason not to use the default functionallity 
+* **fourButton** - used to activate two new  buttons to increment and decrement ×10 steps - **optional**
 * **reachMaxIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case maxValue is reached - **optional**
 * **reachMaxDecIconStyle** - added on version 1.4.0, used to set style to the decrement button icon in case maxValue is reached - **optional**
 * **reachMinIncIconStyle** - added on version 1.4.0, used to set style to the increment button icon in case minValue is reached - **optional**
