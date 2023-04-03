@@ -112,6 +112,8 @@ Name                                | Type                                | Defa
 **upDownButtonsBackgroundColor**    |`string`                             | `'white'`
 **rightButtonBackgroundColor**      |`string`                             | `'white'`
 **leftButtonBackgroundColor**       |`string`                             | `'white'`
+**rightButton10BackgroundColor**    |`string`                             | `'white'`
+**leftButton10BackgroundColor**     |`string`                             | `'white'`
 **totalHeight**                     |`number`                             | none
 **onChange**                        |`function`                           | none - required prop
 **onLimitReached**                  |`function`                           | none (empty function)
