@@ -60,7 +60,27 @@ export default class App extends Component {
           rightButtonBackgroundColor="#18c2ef"
           leftButtonBackgroundColor="#ff8080"
         />
+        <Text style={styles.welcome}>
+          Numeric Input Examples with four Buttons
+        </Text>
         <NumericInput
+          value={this.state.value1}
+          onChange={value1 => { this.setState({ value1 }); console.log(this.state.value1); }}
+          onLimitReached={(isMin, msg) => console.log(isMin, msg)}
+          totalWidth={80}
+          totalHeight={30}
+          iconSize={10}
+          step={1}
+          minValue={0}
+          valueType="real"
+          fourButton
+          rounded
+          textColor="#B0228C"
+          iconStyle={{ color: "white" }}
+          rightButtonBackgroundColor="#18c2ef"
+          leftButtonBackgroundColor="#ff8080"
+        />
+         <NumericInput
           // initValue={this.state.v1}
           value={this.state.v1}
           onChange={(v1) => { this.setState({ v1 }); console.log(v1) }}
