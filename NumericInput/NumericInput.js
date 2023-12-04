@@ -71,6 +71,7 @@ export default class NumericInput extends Component {
     intMatch = (value) => value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input
 
     onChange = (value) => {
+        value = value.replace(",", ".");
         let currValue = typeof this.props.value === 'number' ? this.props.value : this.state.value
         if ((value.length === 1 && value === '-') || (value.length === 2 && value === '0-')) {
             this.setState({ stringValue: '-' })
