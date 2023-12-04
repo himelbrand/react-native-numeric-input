@@ -127,10 +127,10 @@ export default class NumericInput extends Component {
         let legal = match && match[0] === match.input && ((this.props.maxValue === null || (parseFloat(this.state.stringValue) <= this.props.maxValue)) && (this.props.minValue === null || (parseFloat(this.state.stringValue) >= this.props.minValue)))
         if (!legal) {
             if (this.props.minValue !== null && (parseFloat(this.state.stringValue) <= this.props.minValue)) {
-                this.props.onLimitReached(true, 'Reached Minimum Value!')
+                this.props.onLimitReached(false, 'Reached Minimum Value!')
             }
             if (this.props.maxValue !== null && (parseFloat(this.state.stringValue) >= this.props.maxValue)) {
-                this.props.onLimitReached(false, 'Reached Maximum Value!')
+                this.props.onLimitReached(true, 'Reached Maximum Value!')
             }
             if (this.ref) {
                 this.ref.blur()
